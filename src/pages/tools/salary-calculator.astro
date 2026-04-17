@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/content/Breadcrumbs.astro';
+import SalaryCalculator from '../../components/tools/SalaryCalculator.vue';
+
+const seo = {
+  title: 'Калькулятор зарплаты в Польше (brutto → netto)',
+  description: 'Рассчитайте зарплату netto из brutto в Польше. Учитывает ZUS, PIT, тип договора (umowa o pracę, zlecenie, dzieło, B2B) и PPK.',
+  canonical: '/tools/salary-calculator',
+};
+
+const breadcrumbs = [
+  { name: 'Инструменты', url: '/tools' },
+  { name: 'Калькулятор зарплаты', url: '/tools/salary-calculator' },
+];
+---
+
+<BaseLayout seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <header class="mb-8">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+        Калькулятор зарплаты в Польше
+      </h1>
+      <p class="text-gray-600 dark:text-gray-400 leading-relaxed">
+        Рассчитайте сколько вы получите «на руки» (netto) из зарплаты brutto.
+        Учитывает взносы ZUS, налог PIT, тип договора и PPK.
+      </p>
+    </header>
+
+    <SalaryCalculator client:load />
+
+    <div class="prose dark:prose-invert mt-12 max-w-2xl mx-auto">
+      <h2>Как считается зарплата в Польше</h2>
+      <p>
+        В Польше зарплата всегда указывается в <strong>brutto</strong> (до вычетов).
+        Из неё вычитаются:
+      </p>
+      <ol>
+        <li><strong>Взносы ZUS работника</strong> — пенсионный (9.76%), по инвалидности (1.5%), по болезни (2.45%)</li>
+        <li><strong>Взнос на здравоохранение (zdrowotne)</strong> — 9% от суммы после ZUS</li>
+        <li><strong>Налог PIT</strong> — 12% (до 120 000 PLN/год) или 32% (свыше)</li>
+        <li><strong>PPK</strong> (если подключены) — 2% от brutto</li>
+      </ol>
+      <p>
+        Работодатель дополнительно платит свои взносы ZUS (около 20% от brutto),
+        что делает полную стоимость работника значительно выше зарплаты brutto.
+      </p>
+
+      <h2>Льгота для молодых (ulga dla mlodych)</h2>
+      <p>
+        Работники до 26 лет освобождены от налога PIT на доходы до 85 528 PLN в год.
+        Это существенно увеличивает зарплату netto.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

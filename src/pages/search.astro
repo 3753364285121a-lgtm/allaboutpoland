@@ -12,21 +12,46 @@ const seo = {
 <BaseLayout seo={seo}>
   <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Поиск</h1>
-
-    <div class="mb-8">
-      <input
-        type="search"
-        id="search-input"
-        placeholder="Введите запрос..."
-        class="w-full px-4 py-3 text-lg rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
-        autofocus
-      />
-    </div>
-
-    <div id="search-results" class="space-y-4">
-      <p class="text-gray-500 dark:text-gray-400">
-        Начните вводить запрос для поиска по гайдам, статьям и глоссарию.
-      </p>
-    </div>
+    <div id="search"></div>
   </div>
 </BaseLayout>
+
+<style is:global>
+  :root {
+    --pagefind-ui-scale: 1;
+    --pagefind-ui-primary: #dc2626;
+    --pagefind-ui-text: #1f2937;
+    --pagefind-ui-background: #ffffff;
+    --pagefind-ui-border: #e5e7eb;
+    --pagefind-ui-tag: #f3f4f6;
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 0.75rem;
+    --pagefind-ui-image-border-radius: 0.5rem;
+    --pagefind-ui-font: 'Inter', system-ui, sans-serif;
+  }
+  .dark {
+    --pagefind-ui-primary: #f87171;
+    --pagefind-ui-text: #f9fafb;
+    --pagefind-ui-background: #1f2937;
+    --pagefind-ui-border: #374151;
+    --pagefind-ui-tag: #374151;
+  }
+</style>
+
+<script>
+  import { PagefindUI } from '@pagefind/default-ui';
+  new PagefindUI({
+    element: '#search',
+    showSubResults: true,
+    showImages: false,
+    translations: {
+      placeholder: 'Введите запрос...',
+      zero_results: 'Ничего не найдено по запросу [SEARCH_TERM]',
+      many_results: 'Найдено [COUNT] результатов',
+      one_result: 'Найден [COUNT] результат',
+      search_label: 'Поиск по сайту',
+      filters_label: 'Фильтры',
+      load_more: 'Показать ещё',
+    },
+  });
+</script>

@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/content/Breadcrumbs.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const terms = await getCollection('glossary');
+  return terms.map((term) => ({
+    params: { id: term.id },
+    props: { term },
+  }));
+}
+
+const { term } = Astro.props;
+const { Content } = await render(term);
+
+const seo = {
+  title: `${term.data.term} — ${term.data.translation}`,
+  description: term.data.description,
+  canonical: `/glossary/${term.id}`,
+};
+
+const breadcrumbs = [
+  { name: 'Глоссарий', url: '/glossary' },
+  { name: term.data.term, url: `/glossary/${term.id}` },
+];
+
+const termSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'DefinedTerm',
+  name: term.data.term,
+  description: term.data.description,
+  inDefinedTermSet: {
+    '@type': 'DefinedTermSet',
+    name: 'Польский глоссарий для иммигрантов',
+  },
+};
+---
+
+<BaseLayout seo={seo} schema={termSchema}>
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <Breadcrumbs items={breadcrumbs} />
+
+    <header class="mb-8">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+        {term.data.term}
+      </h1>
+      <p class="text-xl text-primary-600 dark:text-primary-400 font-medium">
+        {term.data.translation}
+      </p>
+    </header>
+
+    <div class="prose dark:prose-invert">
+      <Content />
+    </div>
+
+    <!-- Related terms -->
+    {term.data.relatedTerms.length > 0 && (
+      <div class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-700">
+        <h2 class="text-sm font-semibold text-gray-900 dark:text-white uppercase tracking-wide mb-3">
+          Связанные термины
+        </h2>
+        <div class="flex flex-wrap gap-2">
+          {term.data.relatedTerms.map((related) => (
+            <span class="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full">
+              {related}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <div class="mt-8">
+      <a
+        href="/glossary"
+        class="inline-flex items-center gap-1 text-sm text-primary-600 dark:text-primary-400 hover:text-primary-700 transition-colors"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        Все термины
+      </a>
+    </div>
+  </div>
+</BaseLayout>

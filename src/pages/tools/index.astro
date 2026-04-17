@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const seo = {
+  title: 'Инструменты',
+  description: 'Калькуляторы, чеклисты и интерактивные инструменты для жизни в Польше.',
+  canonical: '/tools',
+};
+
+const tools = [
+  {
+    name: 'Калькулятор зарплаты',
+    description: 'Рассчитайте netto из brutto с учётом ZUS, PIT и типа договора.',
+    href: '/tools/salary-calculator',
+    icon: '💰',
+  },
+  {
+    name: 'Чеклист переезда',
+    description: 'Интерактивный список всего, что нужно сделать при переезде в Польшу.',
+    href: '/tools/relocation-checklist',
+    icon: '✅',
+    comingSoon: true,
+  },
+  {
+    name: 'Карта сервисов',
+    description: 'Русскоязычные врачи, юристы и бухгалтеры по городам Польши.',
+    href: '/tools/services-map',
+    icon: '🗺️',
+    comingSoon: true,
+  },
+];
+---
+
+<BaseLayout seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <header class="mb-10">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+        Инструменты
+      </h1>
+      <p class="text-lg text-gray-600 dark:text-gray-400">
+        Полезные калькуляторы и интерактивные инструменты для жизни в Польше.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      {tools.map((tool) => (
+        <a
+          href={tool.comingSoon ? undefined : tool.href}
+          class:list={[
+            'group flex items-start gap-4 p-6 rounded-xl border transition-all',
+            tool.comingSoon
+              ? 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-60 cursor-default'
+              : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-600',
+          ]}
+        >
+          <span class="text-3xl shrink-0">{tool.icon}</span>
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 class="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                {tool.name}
+              </h2>
+              {tool.comingSoon && (
+                <span class="text-xs px-2 py-0.5 bg-gray-200 dark:bg-gray-700 text-gray-500 dark:text-gray-400 rounded-full">
+                  Скоро
+                </span>
+              )}
+            </div>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 leading-relaxed">
+              {tool.description}
+            </p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

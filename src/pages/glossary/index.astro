@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allTerms = await getCollection('glossary');
+const sortedTerms = allTerms.sort((a, b) => a.data.term.localeCompare(b.data.term));
+
+const letters = [...new Set(sortedTerms.map((t) => t.data.term[0].toUpperCase()))].sort();
+
+const seo = {
+  title: 'Глоссарий польских терминов',
+  description: 'Словарь польских терминов с переводом и объяснением для иммигрантов. PESEL, Zameldowanie, ZUS, NFZ, PIT и другие.',
+  canonical: '/glossary',
+};
+---
+
+<BaseLayout seo={seo}>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <header class="mb-10">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+        Глоссарий
+      </h1>
+      <p class="text-lg text-gray-600 dark:text-gray-400">
+        Польские термины, которые вам встретятся при переезде и жизни в Польше.
+      </p>
+    </header>
+
+    <!-- Letter navigation -->
+    <nav class="flex flex-wrap gap-1.5 mb-8" aria-label="Алфавит">
+      {letters.map((letter) => (
+        <a
+          href={`#letter-${letter}`}
+          class="w-9 h-9 flex items-center justify-center rounded-lg text-sm font-medium bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-primary-100 hover:text-primary-700 dark:hover:bg-primary-900/30 dark:hover:text-primary-300 transition-colors"
+        >
+          {letter}
+        </a>
+      ))}
+    </nav>
+
+    <!-- Terms list -->
+    {letters.map((letter) => {
+      const letterTerms = sortedTerms.filter((t) => t.data.term[0].toUpperCase() === letter);
+      return (
+        <section id={`letter-${letter}`} class="mb-8">
+          <h2 class="text-2xl font-bold text-primary-600 dark:text-primary-400 mb-4 border-b border-gray-200 dark:border-gray-700 pb-2">
+            {letter}
+          </h2>
+          <div class="space-y-4">
+            {letterTerms.map((term) => (
+              <a
+                href={`/glossary/${term.id}`}
+                class="block group bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:shadow-md hover:border-primary-300 dark:hover:border-primary-600 transition-all"
+              >
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                      {term.data.term}
+                    </h3>
+                    <p class="text-sm text-primary-600 dark:text-primary-400 mt-0.5">
+                      {term.data.translation}
+                    </p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-2 line-clamp-2">
+                      {term.data.description}
+                    </p>
+                  </div>
+                  <svg class="w-5 h-5 text-gray-300 dark:text-gray-600 shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      );
+    })}
+  </div>
+</BaseLayout>
