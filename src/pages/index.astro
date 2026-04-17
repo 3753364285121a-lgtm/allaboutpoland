@@ -18,8 +18,8 @@ const latestGuides = allGuides
 const guidesToShow = featuredGuides.length > 0 ? featuredGuides : latestGuides;
 
 const seo = {
-  title: 'All About Poland',
-  description: 'Информационный портал о жизни в Польше для русскоязычных. Гайды по визам, работе, жилью, документам, финансам и бизнесу.',
+  title: 'Бизнес в Польше — блог бухгалтера',
+  description: 'Блог практикующего бухгалтера о бизнесе в Польше. JDG, налоги, ZUS, карта побыту — без воды, с реальными цифрами и пошаговыми инструкциями.',
   canonical: '/',
 };
 
@@ -27,57 +27,68 @@ const schema = [generateWebsiteSchema(), generateOrganizationSchema()];
 ---
 
 <BaseLayout seo={seo} schema={schema}>
-  <!-- Hero Section -->
-  <section class="bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+  <!-- Hero — personal, warm -->
+  <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
       <div class="max-w-3xl">
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-          Всё о жизни<br />в
-          <span class="text-primary-200">Польше</span>
+        <p class="text-amber-400 font-medium mb-3 text-sm tracking-wide uppercase">Блог практикующего бухгалтера</p>
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-5">
+          Бизнес в Польше —<br />
+          <span class="text-amber-300">без воды и паники</span>
         </h1>
-        <p class="text-lg sm:text-xl text-primary-100 leading-relaxed mb-8 max-w-2xl">
-          Подробные гайды, калькуляторы и шаблоны документов для тех, кто переезжает или уже живёт в Польше.
-          На русском языке.
+        <p class="text-lg text-slate-300 leading-relaxed mb-8 max-w-2xl">
+          Открыть JDG, разобраться с ZUS, выбрать налоговый режим, получить карту побыту.
+          Пишу так, как объясняю своим клиентам — просто, с цифрами и примерами.
         </p>
         <div class="flex flex-wrap gap-3">
           <a
-            href="/guides"
-            class="px-6 py-3 bg-white text-primary-700 font-semibold rounded-lg hover:bg-primary-50 transition-colors"
+            href="/guides/registration/jdg-open"
+            class="px-6 py-3 bg-amber-500 text-slate-900 font-semibold rounded-lg hover:bg-amber-400 transition-colors"
           >
-            Смотреть гайды
+            Открыть JDG — гайд
           </a>
           <a
-            href="/guides/visa/relocating"
-            class="px-6 py-3 bg-primary-500/30 text-white font-semibold rounded-lg border border-primary-400/40 hover:bg-primary-500/50 transition-colors"
+            href="/tools/salary-calculator"
+            class="px-6 py-3 bg-slate-700 text-white font-semibold rounded-lg border border-slate-600 hover:bg-slate-600 transition-colors"
           >
-            Переезд в Польшу
+            Калькулятор зарплаты
           </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Categories Grid -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-      Разделы
+  <!-- Personal intro strip -->
+  <section class="bg-amber-50 dark:bg-amber-900/10 border-b border-amber-100 dark:border-amber-900/20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+      <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed text-center">
+        Привет! Я веду бухгалтерию для 50+ предпринимателей в Польше.
+        Здесь делюсь тем, что реально работает — без копипаста из законов, человеческим языком.
+      </p>
+    </div>
+  </section>
+
+  <!-- Topics Grid -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+      О чём пишу
     </h2>
-    <p class="text-gray-600 dark:text-gray-400 mb-8">
-      Выберите тему, которая вас интересует
+    <p class="text-gray-500 dark:text-gray-400 mb-8">
+      Всё что нужно, чтобы вести бизнес в Польше и не сойти с ума
     </p>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {categories.map((cat) => (
+      {categories.filter(c => c.slug !== 'tools' && c.slug !== 'closing').map((cat) => (
         <a
-          href={`/guides/${cat.slug}`}
-          class="group flex items-start gap-4 p-5 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-200"
+          href={`/guides#${cat.slug}`}
+          class="group flex items-start gap-4 p-5 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-lg hover:border-amber-300 dark:hover:border-amber-600 transition-all duration-200"
         >
-          <span class="text-3xl shrink-0" role="img" aria-hidden="true">{cat.icon}</span>
+          <span class="text-2xl shrink-0 mt-0.5" role="img" aria-hidden="true">{cat.icon}</span>
           <div>
-            <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+            <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors text-sm">
               {cat.name}
             </h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 leading-relaxed">
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 leading-relaxed">
               {cat.description}
             </p>
           </div>
@@ -86,24 +97,24 @@ const schema = [generateWebsiteSchema(), generateOrganizationSchema()];
     </div>
   </section>
 
-  <!-- Featured Guides -->
+  <!-- Latest / Featured articles -->
   {guidesToShow.length > 0 && (
-    <section class="bg-gray-50 dark:bg-gray-800/50 py-16">
+    <section class="bg-gray-50 dark:bg-gray-800/50 py-14">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between mb-8">
           <div>
-            <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-              Популярные гайды
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+              Свежие статьи
             </h2>
-            <p class="text-gray-600 dark:text-gray-400">
-              Самые полезные материалы для начала
+            <p class="text-gray-500 dark:text-gray-400 text-sm">
+              Начните с этих — самые полезные
             </p>
           </div>
           <a
             href="/guides"
-            class="hidden sm:inline-flex items-center gap-1 text-sm font-medium text-primary-600 dark:text-primary-400 hover:text-primary-700 transition-colors"
+            class="hidden sm:inline-flex items-center gap-1 text-sm font-medium text-amber-600 dark:text-amber-400 hover:text-amber-700 transition-colors"
           >
-            Все гайды
+            Все статьи
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
@@ -129,25 +140,26 @@ const schema = [generateWebsiteSchema(), generateOrganizationSchema()];
     </section>
   )}
 
-  <!-- CTA / Newsletter -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-    <div class="bg-primary-50 dark:bg-primary-900/20 rounded-2xl p-8 sm:p-12 text-center border border-primary-100 dark:border-primary-800/40">
-      <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">
-        Не пропустите новые гайды
+  <!-- Newsletter — personal tone -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+    <div class="bg-slate-900 dark:bg-slate-800 rounded-2xl p-8 sm:p-12 text-center">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3">
+        Новые ставки ZUS? Изменения в налогах?
       </h2>
-      <p class="text-gray-600 dark:text-gray-400 mb-6 max-w-lg mx-auto">
-        Подпишитесь на рассылку и получайте уведомления о новых статьях и обновлениях.
+      <p class="text-slate-400 mb-6 max-w-lg mx-auto text-sm leading-relaxed">
+        Подпишитесь — присылаю только когда есть что-то важное.
+        Без спама, 1-2 письма в месяц.
       </p>
       <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
         <input
           type="email"
           placeholder="Ваш email"
-          class="flex-1 px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
+          class="flex-1 px-4 py-3 rounded-lg border border-slate-700 bg-slate-800 text-white placeholder-slate-500 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
           required
         />
         <button
           type="submit"
-          class="px-6 py-3 bg-primary-600 text-white font-semibold rounded-lg hover:bg-primary-700 transition-colors"
+          class="px-6 py-3 bg-amber-500 text-slate-900 font-semibold rounded-lg hover:bg-amber-400 transition-colors"
         >
           Подписаться
         </button>

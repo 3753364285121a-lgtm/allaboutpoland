@@ -2,76 +2,73 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-gray-50 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-auto" data-pagefind-ignore>
+<footer class="bg-slate-900 text-slate-400 mt-auto" data-pagefind-ignore>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
       <!-- About -->
       <div class="md:col-span-1">
-        <a href="/" class="font-bold text-lg text-primary-600 dark:text-primary-400">All About Poland</a>
-        <p class="mt-3 text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-          Информационный портал о жизни в Польше для русскоязычных.
-          Гайды, инструменты и шаблоны документов.
+        <a href="/" class="font-bold text-lg text-white flex items-center gap-2">
+          <span class="w-7 h-7 bg-amber-500 text-slate-900 rounded-md flex items-center justify-center text-xs font-black">PL</span>
+          Бизнес в Польше
+        </a>
+        <p class="mt-3 text-sm leading-relaxed">
+          Блог практикующего бухгалтера. JDG, налоги, ZUS — без воды, с реальными цифрами.
         </p>
       </div>
 
-      <!-- Guides -->
+      <!-- Popular -->
       <div>
-        <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Гайды</h3>
+        <h3 class="font-semibold text-white mb-3 text-sm">Популярное</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href="/guides/visa" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Визы и переезд</a></li>
-          <li><a href="/guides/work" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Работа</a></li>
-          <li><a href="/guides/documents" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Документы</a></li>
-          <li><a href="/guides/housing" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Жильё</a></li>
-          <li><a href="/guides/finance" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Финансы</a></li>
+          <li><a href="/guides/registration/jdg-open" class="hover:text-amber-400 transition-colors">Открыть JDG</a></li>
+          <li><a href="/guides/zus/zus-jdg" class="hover:text-amber-400 transition-colors">ZUS для JDG</a></li>
+          <li><a href="/guides/taxes/tax-regimes" class="hover:text-amber-400 transition-colors">Выбор налогового режима</a></li>
+          <li><a href="/guides/legalization/karta-pobytu-jdg" class="hover:text-amber-400 transition-colors">Карта побыту по JDG</a></li>
+          <li><a href="/guides/taxes/jdg-real-costs" class="hover:text-amber-400 transition-colors">Сколько платит JDG</a></li>
         </ul>
       </div>
 
       <!-- Tools -->
       <div>
-        <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Инструменты</h3>
+        <h3 class="font-semibold text-white mb-3 text-sm">Инструменты</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href="/tools/salary-calculator" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Калькулятор зарплаты</a></li>
-          <li><a href="/tools/relocation-checklist" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Чеклист переезда</a></li>
-          <li><a href="/glossary" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Глоссарий</a></li>
+          <li><a href="/tools/salary-calculator" class="hover:text-amber-400 transition-colors">Калькулятор зарплаты</a></li>
+          <li><a href="/glossary" class="hover:text-amber-400 transition-colors">Глоссарий</a></li>
+        </ul>
+
+        <h3 class="font-semibold text-white mb-3 mt-6 text-sm">Контакт</h3>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/about" class="hover:text-amber-400 transition-colors">Обо мне</a></li>
+          <li><a href="mailto:info@allaboutpoland.com" class="hover:text-amber-400 transition-colors">info@allaboutpoland.com</a></li>
         </ul>
       </div>
 
-      <!-- Project -->
+      <!-- Newsletter -->
       <div>
-        <h3 class="font-semibold text-gray-900 dark:text-white mb-3">Проект</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="/about" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">О проекте</a></li>
-          <li><a href="/contact" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Контакт</a></li>
-          <li><a href="/privacy" class="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Конфиденциальность</a></li>
-        </ul>
-
-        <!-- Newsletter mini-form -->
-        <div class="mt-4">
-          <h4 class="text-sm font-medium text-gray-900 dark:text-white mb-2">Рассылка</h4>
-          <form class="flex gap-2">
-            <input
-              type="email"
-              placeholder="Email"
-              class="flex-1 px-3 py-1.5 text-sm rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none"
-              required
-            />
-            <button
-              type="submit"
-              class="px-3 py-1.5 text-sm font-medium text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors"
-            >
-              OK
-            </button>
-          </form>
-        </div>
+        <h3 class="font-semibold text-white mb-3 text-sm">Рассылка</h3>
+        <p class="text-xs mb-3 leading-relaxed">Новые ставки, изменения в законах. 1-2 письма в месяц, без спама.</p>
+        <form class="flex gap-2">
+          <input
+            type="email"
+            placeholder="Email"
+            class="flex-1 px-3 py-1.5 text-sm rounded-lg bg-slate-800 border border-slate-700 text-white placeholder-slate-500 focus:ring-2 focus:ring-amber-500 focus:border-transparent outline-none"
+            required
+          />
+          <button
+            type="submit"
+            class="px-3 py-1.5 text-sm font-medium text-slate-900 bg-amber-500 rounded-lg hover:bg-amber-400 transition-colors"
+          >
+            OK
+          </button>
+        </form>
       </div>
     </div>
 
-    <!-- Bottom bar -->
-    <div class="mt-10 pt-6 border-t border-gray-200 dark:border-gray-700 flex flex-col sm:flex-row items-center justify-between gap-3">
-      <p class="text-sm text-gray-500 dark:text-gray-400">
-        &copy; {currentYear} All About Poland. Все права защищены.
+    <div class="mt-10 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-slate-500">
+        &copy; {currentYear} Бизнес в Польше. Все права защищены.
       </p>
-      <p class="text-xs text-gray-400 dark:text-gray-500">
+      <p class="text-xs text-slate-600">
         Информация на сайте не является юридической консультацией.
       </p>
     </div>

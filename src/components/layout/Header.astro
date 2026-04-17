@@ -8,13 +8,10 @@ const currentPath = Astro.url.pathname;
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
-      <a href="/" class="flex items-center gap-2 font-bold text-xl text-primary-600 dark:text-primary-400 hover:text-primary-700 transition-colors">
-        <svg class="w-8 h-8" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="32" height="16" rx="2" fill="#ffffff" stroke="#e5e7eb" stroke-width="1"/>
-          <rect y="16" width="32" height="16" rx="2" fill="#dc2626"/>
-        </svg>
-        <span class="hidden sm:inline">All About Poland</span>
-        <span class="sm:hidden">AAP</span>
+      <a href="/" class="flex items-center gap-2 font-bold text-lg text-slate-800 dark:text-white hover:text-amber-600 dark:hover:text-amber-400 transition-colors">
+        <span class="w-8 h-8 bg-amber-500 text-slate-900 rounded-lg flex items-center justify-center text-sm font-black">PL</span>
+        <span class="hidden sm:inline">Бизнес в Польше</span>
+        <span class="sm:hidden">BizPL</span>
       </a>
 
       <!-- Desktop Navigation -->
@@ -25,7 +22,7 @@ const currentPath = Astro.url.pathname;
             class:list={[
               'px-3 py-2 rounded-lg text-sm font-medium transition-colors',
               currentPath.startsWith(link.href)
-                ? 'bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300'
+                ? 'bg-amber-50 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300'
                 : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-800',
             ]}
           >
@@ -92,7 +89,7 @@ const currentPath = Astro.url.pathname;
           class:list={[
             'block px-3 py-2 rounded-lg text-base font-medium transition-colors',
             currentPath.startsWith(link.href)
-              ? 'bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300'
+              ? 'bg-amber-50 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300'
               : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-800',
           ]}
         >

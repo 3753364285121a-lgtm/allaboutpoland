@@ -14,7 +14,7 @@ export interface SEOProps {
   noindex?: boolean;
 }
 
-const SITE_NAME = 'All About Poland';
+const SITE_NAME = 'Бизнес в Польше — блог бухгалтера';
 const SITE_URL = 'https://allaboutpoland.com';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/images/og/default.jpg`;
 

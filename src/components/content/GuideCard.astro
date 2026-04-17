@@ -11,13 +11,13 @@ interface Props {
 const { title, description, href, category, timeToRead, datePublished } = Astro.props;
 ---
 
-<a href={href} class="group block bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-200">
+<a href={href} class="group block bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:shadow-lg hover:border-amber-300 dark:hover:border-amber-600 transition-all duration-200">
   {category && (
-    <span class="inline-block text-xs font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 px-2 py-0.5 rounded-full mb-2">
+    <span class="inline-block text-xs font-medium text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-900/30 px-2 py-0.5 rounded-full mb-2">
       {category}
     </span>
   )}
-  <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-2 leading-snug">
+  <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors mb-2 leading-snug">
     {title}
   </h3>
   <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed line-clamp-2">
