@@ -4,4 +4,4 @@ Disallow: /api/
 Disallow: /_astro/
 Disallow: /search?*
 
-Sitemap: https://allaboutpoland.com/sitemap-index.xml
+Sitemap: https://polandhowto.com/sitemap-index.xml

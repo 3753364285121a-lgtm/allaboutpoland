@@ -15,7 +15,7 @@ export interface SEOProps {
 }
 
 const SITE_NAME = 'Бизнес в Польше — блог бухгалтера';
-const SITE_URL = 'https://allaboutpoland.com';
+const SITE_URL = 'https://polandhowto.com';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/images/og/default.jpg`;
 
 export function getPageTitle(title: string): string {
