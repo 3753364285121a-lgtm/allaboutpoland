@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  category?: string;
+  timeToRead?: number;
+  datePublished?: string;
+}
+
+const { title, description, href, category, timeToRead, datePublished } = Astro.props;
+---
+
+<a href={href} class="group block bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-5 hover:shadow-lg hover:border-primary-300 dark:hover:border-primary-600 transition-all duration-200">
+  {category && (
+    <span class="inline-block text-xs font-medium text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/30 px-2 py-0.5 rounded-full mb-2">
+      {category}
+    </span>
+  )}
+  <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors mb-2 leading-snug">
+    {title}
+  </h3>
+  <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed line-clamp-2">
+    {description}
+  </p>
+  {(timeToRead || datePublished) && (
+    <div class="flex items-center gap-3 mt-3 text-xs text-gray-400 dark:text-gray-500">
+      {timeToRead && <span>{timeToRead} мин</span>}
+      {datePublished && (
+        <time datetime={datePublished}>
+          {new Date(datePublished).toLocaleDateString('ru-RU', { month: 'short', day: 'numeric' })}
+        </time>
+      )}
+    </div>
+  )}
+</a>

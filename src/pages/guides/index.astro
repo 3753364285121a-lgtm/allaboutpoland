@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GuideCard from '../../components/content/GuideCard.astro';
+import { categories } from '../../data/navigation';
+import { getCollection } from 'astro:content';
+
+const allGuides = await getCollection('guides', ({ data }) => !data.draft);
+
+const guidesByCategory = categories.map((cat) => ({
+  ...cat,
+  guides: allGuides
+    .filter((g) => g.data.category === cat.slug)
+    .sort((a, b) => new Date(b.data.datePublished).getTime() - new Date(a.data.datePublished).getTime()),
+}));
+
+const seo = {
+  title: 'Гайды о жизни в Польше',
+  description: 'Полная коллекция гайдов о жизни в Польше: визы, работа, жильё, документы, финансы, медицина, бизнес и образование.',
+  canonical: '/guides',
+};
+---
+
+<BaseLayout seo={seo}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <header class="mb-12">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+        Гайды о жизни в Польше
+      </h1>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
+        Подробные инструкции по всем аспектам жизни в Польше — от получения визы до открытия бизнеса.
+      </p>
+    </header>
+
+    {guidesByCategory.map((cat) => (
+      <section class="mb-12" id={cat.slug}>
+        <div class="flex items-center gap-3 mb-5">
+          <span class="text-2xl" role="img" aria-hidden="true">{cat.icon}</span>
+          <div>
+            <h2 class="text-xl font-bold text-gray-900 dark:text-white">
+              <a href={`/guides/${cat.slug}`} class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+                {cat.name}
+              </a>
+            </h2>
+            <p class="text-sm text-gray-500 dark:text-gray-400">{cat.description}</p>
+          </div>
+        </div>
+
+        {cat.guides.length > 0 ? (
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {cat.guides.map((guide) => (
+              <GuideCard
+                title={guide.data.title}
+                description={guide.data.description}
+                href={`/guides/${guide.id}`}
+                timeToRead={guide.data.timeToRead}
+                datePublished={guide.data.datePublished}
+              />
+            ))}
+          </div>
+        ) : (
+          <p class="text-gray-400 dark:text-gray-500 italic text-sm bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
+            Гайды в этом разделе скоро появятся.
+          </p>
+        )}
+      </section>
+    ))}
+  </div>
+</BaseLayout>

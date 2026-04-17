@@ -1,0 +1,20 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import Callout from '../../components/common/Callout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides', ({ data }) => !data.draft);
+  return guides.map((guide) => ({
+    params: { slug: guide.id },
+    props: { guide },
+  }));
+}
+
+const { guide } = Astro.props;
+const { Content, headings } = await render(guide);
+---
+
+<GuideLayout frontmatter={guide.data} headings={headings}>
+  <Content components={{ Callout }} />
+</GuideLayout>

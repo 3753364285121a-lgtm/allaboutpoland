@@ -1,0 +1,34 @@
+---
+import { generateBreadcrumbSchema, type BreadcrumbItem } from '../../utils/seo';
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+const allItems: BreadcrumbItem[] = [{ name: 'Главная', url: '/' }, ...items];
+const schema = generateBreadcrumbSchema(allItems);
+---
+
+<nav aria-label="Хлебные крошки" class="mb-6">
+  <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+    {allItems.map((item, index) => (
+      <li class="flex items-center gap-1">
+        {index > 0 && (
+          <svg class="w-4 h-4 text-gray-300 dark:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        )}
+        {index === allItems.length - 1 ? (
+          <span class="text-gray-700 dark:text-gray-200 font-medium">{item.name}</span>
+        ) : (
+          <a href={item.url} class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">
+            {item.name}
+          </a>
+        )}
+      </li>
+    ))}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
