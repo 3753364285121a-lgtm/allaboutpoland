@@ -17,6 +17,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap({
+      filter: (page) => !page.includes('/search') && !page.includes('/404'),
       i18n: {
         defaultLocale: 'ru',
         locales: {
