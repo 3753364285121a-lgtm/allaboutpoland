@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import GuideCard from '../components/content/GuideCard.astro';
+import CategoryIcon from '../components/common/CategoryIcon.astro';
 import { categories } from '../data/navigation';
 import { generateWebsiteSchema, generateOrganizationSchema } from '../utils/seo';
 import { getCollection } from 'astro:content';
@@ -83,7 +84,7 @@ const schema = [generateWebsiteSchema(), generateOrganizationSchema()];
           href={`/guides#${cat.slug}`}
           class="group flex items-start gap-4 p-5 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-lg hover:border-amber-300 dark:hover:border-amber-600 transition-all duration-200"
         >
-          <span class="text-2xl shrink-0 mt-0.5" role="img" aria-hidden="true">{cat.icon}</span>
+          <CategoryIcon slug={cat.slug} />
           <div>
             <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors text-sm">
               {cat.name}
