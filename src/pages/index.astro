@@ -69,30 +69,24 @@ const schema = [generateWebsiteSchema(), generateOrganizationSchema()];
     </div>
   </section>
 
-  <!-- Topics Grid -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+  <!-- Topics Grid — allaboutberlin style -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-10 text-center">
       О чём пишу
     </h2>
-    <p class="text-gray-500 dark:text-gray-400 mb-8">
-      Всё что нужно, чтобы вести бизнес в Польше и не сойти с ума
-    </p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
       {categories.filter(c => c.slug !== 'tools' && c.slug !== 'closing').map((cat) => (
         <a
           href={`/guides#${cat.slug}`}
-          class="group flex items-start gap-4 p-5 bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 hover:shadow-lg hover:border-amber-300 dark:hover:border-amber-600 transition-all duration-200"
+          class="group flex flex-col items-center text-center p-6 bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 hover:shadow-lg hover:border-gray-300 dark:hover:border-gray-500 transition-all duration-200"
         >
-          <CategoryIcon slug={cat.slug} />
-          <div>
-            <h3 class="font-semibold text-gray-900 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors text-sm">
-              {cat.name}
-            </h3>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 leading-relaxed">
-              {cat.description}
-            </p>
+          <div class="text-gray-700 dark:text-gray-300 group-hover:text-gray-900 dark:group-hover:text-white transition-colors mb-3">
+            <CategoryIcon slug={cat.slug} size="lg" />
           </div>
+          <span class="text-sm font-medium text-gray-800 dark:text-gray-200 group-hover:text-gray-900 dark:group-hover:text-white transition-colors">
+            {cat.name}
+          </span>
         </a>
       ))}
     </div>

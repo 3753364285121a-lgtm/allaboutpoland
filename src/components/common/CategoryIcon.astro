@@ -1,59 +1,41 @@
 ---
 interface Props {
   slug: string;
-  class?: string;
+  size?: 'sm' | 'lg';
 }
 
-const { slug, class: className = 'w-10 h-10' } = Astro.props;
+const { slug, size = 'sm' } = Astro.props;
 
-const icons: Record<string, { path: string; bg: string; fg: string }> = {
-  registration: {
-    path: 'M13 10V3L4 14h7v7l9-11h-7z',
-    bg: 'bg-amber-100 dark:bg-amber-900/30',
-    fg: 'text-amber-600 dark:text-amber-400',
-  },
-  taxes: {
-    path: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z',
-    bg: 'bg-blue-100 dark:bg-blue-900/30',
-    fg: 'text-blue-600 dark:text-blue-400',
-  },
-  zus: {
-    path: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4',
-    bg: 'bg-purple-100 dark:bg-purple-900/30',
-    fg: 'text-purple-600 dark:text-purple-400',
-  },
-  docs: {
-    path: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
-    bg: 'bg-emerald-100 dark:bg-emerald-900/30',
-    fg: 'text-emerald-600 dark:text-emerald-400',
-  },
-  legalization: {
-    path: 'M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z',
-    bg: 'bg-rose-100 dark:bg-rose-900/30',
-    fg: 'text-rose-600 dark:text-rose-400',
-  },
-  growth: {
-    path: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',
-    bg: 'bg-teal-100 dark:bg-teal-900/30',
-    fg: 'text-teal-600 dark:text-teal-400',
-  },
-  tools: {
-    path: 'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065zM15 12a3 3 0 11-6 0 3 3 0 016 0z',
-    bg: 'bg-orange-100 dark:bg-orange-900/30',
-    fg: 'text-orange-600 dark:text-orange-400',
-  },
-  closing: {
-    path: 'M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z',
-    bg: 'bg-slate-100 dark:bg-slate-800',
-    fg: 'text-slate-500 dark:text-slate-400',
-  },
+const icons: Record<string, string> = {
+  // Открытие бизнеса — ракета/документ с галочкой
+  registration: `<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>`,
+  // Налоги — калькулятор
+  taxes: `<path d="M4 4a2 2 0 012-2h12a2 2 0 012 2v16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z"/><path d="M8 6h8v3H8z"/><circle cx="8" cy="13" r=".5" fill="currentColor"/><circle cx="12" cy="13" r=".5" fill="currentColor"/><circle cx="16" cy="13" r=".5" fill="currentColor"/><circle cx="8" cy="16.5" r=".5" fill="currentColor"/><circle cx="12" cy="16.5" r=".5" fill="currentColor"/><circle cx="16" cy="16.5" r=".5" fill="currentColor"/>`,
+  // ZUS — здание с колоннами
+  zus: `<path d="M3 21h18M3 10h18M5 6l7-3 7 3M4 10v11M8 10v11M12 10v11M16 10v11M20 10v11"/>`,
+  // Документы — фактура/файл
+  docs: `<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8M8 17h8M8 9h2"/>`,
+  // Легализация — паспорт/ID карта
+  legalization: `<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="11" r="2.5"/><path d="M5 18c0-2 1.5-3 4-3s4 1 4 3"/><path d="M15 9h3M15 13h3"/>`,
+  // Масштабирование — график роста с людьми
+  growth: `<path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>`,
+  // Инструменты — шестерёнка с гаечным ключом
+  tools: `<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/>`,
+  // Закрытие — стоп/пауза
+  closing: `<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>`,
 };
 
-const icon = icons[slug] || icons.tools;
+const svg = icons[slug] || icons.tools;
+const sizeClass = size === 'lg' ? 'w-12 h-12' : 'w-5 h-5';
 ---
 
-<div class={`${className} ${icon.bg} rounded-xl flex items-center justify-center shrink-0`}>
-  <svg class={`w-5 h-5 ${icon.fg}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d={icon.path} />
-  </svg>
-</div>
+<svg
+  class={sizeClass}
+  fill="none"
+  stroke="currentColor"
+  viewBox="0 0 24 24"
+  stroke-width="1.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  set:html={svg}
+/>
