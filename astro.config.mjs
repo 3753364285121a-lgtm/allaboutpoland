@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import vue from '@astrojs/vue';
+import { remarkGlossaryAutolink } from './src/plugins/glossary-autolink.mjs';
 
 // https://astro.build/config
 export default defineConfig({
@@ -39,6 +40,7 @@ export default defineConfig({
   },
 
   markdown: {
+    remarkPlugins: [remarkGlossaryAutolink],
     shikiConfig: {
       theme: 'github-dark',
     },

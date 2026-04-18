@@ -201,6 +201,30 @@ body {
 .dark .prose th { background: var(--color-surface-dark-dim); }
 .dark .prose th, .dark .prose td { border-color: var(--color-border-dark); }
 
+/* ===== Glossary autolinks ===== */
+
+.prose a.glossary-link {
+  color: var(--color-accent-600);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--color-accent-400);
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.prose a.glossary-link:hover {
+  color: var(--color-accent-700);
+  border-bottom-style: solid;
+}
+
+.dark .prose a.glossary-link {
+  color: var(--color-accent-400);
+  border-bottom-color: var(--color-accent-600);
+}
+
+.dark .prose a.glossary-link:hover {
+  color: var(--color-accent-300);
+  border-bottom-style: solid;
+}
+
 /* ===== Skip to content (a11y) ===== */
 
 .skip-to-content {
